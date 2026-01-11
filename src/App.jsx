@@ -8,29 +8,24 @@ import SkillsSection from "./components/Skills";
 import ContactForm from "./components/Contact";
 
 const App = () => {
-  const [isDark, setIsDark] = useState(true); // default dark
+  const [isDark, setIsDark] = useState(true);
 
-  // Load saved theme from localStorage
+  // Load saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") setIsDark(false);
-    else setIsDark(true); // default dark
+    setIsDark(savedTheme !== "light"); // default dark
   }, []);
 
-  // Apply theme globally
+  // Apply theme globally to <html>
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
   return (
-    <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen transition-colors duration-300">
       <Header isDark={isDark} setIsDark={setIsDark} />
+
       <main>
         <About />
         <Experience />
@@ -38,6 +33,7 @@ const App = () => {
         <SkillsSection />
         <ContactForm />
       </main>
+
       <Footer />
     </div>
   );

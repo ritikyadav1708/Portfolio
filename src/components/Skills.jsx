@@ -15,20 +15,34 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="py-16 md:py-24 bg-gradient-to-r from-purple-900 via-cyan-900 to-pink-900 text-neutral-100"
+      className="
+        py-16 md:py-24
+        bg-slate-50
+        dark:bg-slate-950
+        text-slate-900 dark:text-white
+        transition-colors duration-300
+      "
     >
       <div className="max-w-6xl mx-auto px-4">
-        <div className="bg-neutral-900/60 backdrop-blur rounded-2xl shadow-xl p-8">
+        {/* Card Wrapper */}
+        <div className="
+          bg-white/70 dark:bg-slate-900/50
+          backdrop-blur-md
+          rounded-2xl
+          shadow-xl
+          p-8
+          transition-colors duration-300
+        ">
           
           {/* Heading */}
           <div className="mb-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold">My Skills</h2>
-            <p className="mt-2 text-neutral-200 text-sm md:text-base">
+            <p className="mt-2 text-slate-600 dark:text-neutral-200 text-sm md:text-base">
               Technologies and tools I use regularly
             </p>
           </div>
 
-          {/* FLEX Skills Container */}
+          {/* Skills Grid */}
           <div className="flex flex-wrap justify-center gap-10">
             {SKILLS.map((skill, idx) => (
               <div
